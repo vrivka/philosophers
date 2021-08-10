@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_free.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vrivka <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/10 14:17:20 by vrivka            #+#    #+#             */
+/*   Updated: 2021/08/10 14:17:22 by vrivka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-static void philo_init(t_philo *philo, t_all *all, int num)
+static void	philo_init(t_philo *philo, t_all *all, int num)
 {
 	philo->num = num;
 	philo->odd = num % 2;
@@ -15,7 +27,7 @@ static void philo_init(t_philo *philo, t_all *all, int num)
 	philo->last_meal_time = 0;
 }
 
-static int init_(t_all *all, char **av)
+static int	init_(t_all *all, char **av)
 {
 	all->num_philo = my_atoi(av[0]);
 	all->time_to_die = my_atoi(av[1]);
@@ -44,9 +56,9 @@ static int init_(t_all *all, char **av)
 	return (0);
 }
 
-static int init_forks(t_all *all)
+static int	init_forks(t_all *all)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < all->num_philo)
@@ -69,9 +81,9 @@ static int init_forks(t_all *all)
 	return (0);
 }
 
-int all_init(t_all *all, char **av)
+int	all_init(t_all *all, char **av)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	if (init_(all, av) || init_forks(all))
 		return (1);
@@ -85,9 +97,9 @@ int all_init(t_all *all, char **av)
 	return (0);
 }
 
-void free_all(t_all *all)
+void	free_all(t_all *all)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < all->num_philo)

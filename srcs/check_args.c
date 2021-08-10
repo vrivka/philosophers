@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_args.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vrivka <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/10 14:17:34 by vrivka            #+#    #+#             */
+/*   Updated: 2021/08/10 14:17:40 by vrivka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	check_arg(const char *str)
@@ -40,11 +52,11 @@ size_t	my_atoi(const char *str)
 	return (result * sign);
 }
 
-int check_args(int ac, char **av)
+int	check_args(int ac, char **av)
 {
-	long int value;
-	size_t len;
-	int i;
+	long int	value;
+	size_t		len;
+	int			i;
 
 	if (ac < 4 || ac > 5)
 		return (print_error("wrong number of arguments", NULL));

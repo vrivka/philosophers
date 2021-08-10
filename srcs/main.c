@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vrivka <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/10 14:15:54 by vrivka            #+#    #+#             */
+/*   Updated: 2021/08/10 14:21:44 by                  ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-static void eat_counter(t_all *all)
+static void	eat_counter(t_all *all)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	while (all->status == ALIVE)
 	{
@@ -21,9 +33,9 @@ static void eat_counter(t_all *all)
 	}
 }
 
-static void philo_wait(t_all *all)
+static void	philo_wait(t_all *all)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < all->num_philo)
@@ -33,21 +45,21 @@ static void philo_wait(t_all *all)
 	}
 }
 
-static int create_threads(t_all *all)
+static int	create_threads(t_all *all)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < all->num_philo)
 	{
 		if (pthread_create(&all->philo[i].philo, NULL,
-			&philo_thread, &all->philo[i]))
+				&philo_thread, &all->philo[i]))
 		{
 			all->status = ERROR;
 			return (print_error("cannot create a thread", NULL));
 		}
 		if (pthread_create(&all->philo[i].monitor, NULL, &philo_monitor,
-			&all->philo[i]))
+				&all->philo[i]))
 		{
 			all->status = ERROR;
 			return (print_error("cannot create a thread", NULL));
@@ -58,9 +70,9 @@ static int create_threads(t_all *all)
 	return (0);
 }
 
-static int start_philo(t_all *all)
+static int	start_philo(t_all *all)
 {
-	int ret;
+	int	ret;
 
 	pthread_mutex_lock(&all->pause);
 	ret = create_threads(all);
@@ -71,9 +83,9 @@ static int start_philo(t_all *all)
 	return (ret);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_all *all;
+	t_all	*all;
 
 	if (check_args(ac - 1, &av[1]))
 		return (1);
@@ -86,5 +98,5 @@ int main(int ac, char **av)
 		return (1);
 	}
 	free_all(all);
-	return 0;
+	return (0);
 }
